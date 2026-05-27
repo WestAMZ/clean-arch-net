@@ -11,9 +11,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infraestructura", "Infraest
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Pruebas", "Pruebas", "{CD16DB1A-8831-4632-9B11-21A49E0FB4D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DientesLimpios.Dominio", "DientesLimpios.Dominio\DientesLimpios.Dominio.csproj", "{4E708924-3B45-43CD-B37B-65A61BC459DC}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4E708924-3B45-43CD-B37B-65A61BC459DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E708924-3B45-43CD-B37B-65A61BC459DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E708924-3B45-43CD-B37B-65A61BC459DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E708924-3B45-43CD-B37B-65A61BC459DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4E708924-3B45-43CD-B37B-65A61BC459DC} = {28842C31-7434-44CF-ADA9-AF290123CA35}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4C9DF00-0624-4F78-8508-CFCED0719D8F}
