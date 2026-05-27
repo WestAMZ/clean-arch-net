@@ -1,4 +1,5 @@
 ﻿using DientesLimpios.Dominio.Excepciones;
+using DientesLimpios.Dominio.ObjetosDeValor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,23 +12,13 @@ namespace DientesLimpios.Dominio.Entidades
     {
         public Guid Id { get; private set; }
         public string Nombre { get; private set; } = null!;
-        public string Email { get; private set; } = null!;
+        public Email Email { get; private set; } = null!;
 
-        public Paciente(string nombre, string email)
+        public Paciente(string nombre, Email email)
         {
             if (string.IsNullOrWhiteSpace(nombre))
             {
                 throw new ExcepcionDeReglaDeNegocio($"El {nameof(nombre)} es obligatorio");
-            }
-
-            if (string.IsNullOrWhiteSpace(email))
-            {
-                throw new ExcepcionDeReglaDeNegocio($"El {nameof(email)} es obligatorio");
-            }
-
-            if (!email.Contains("@"))
-            {
-                throw new ExcepcionDeReglaDeNegocio($"El {nameof(email)} no es válido");
             }
 
             Id = Guid.CreateVersion7();
