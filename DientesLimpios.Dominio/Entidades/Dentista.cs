@@ -21,6 +21,11 @@ namespace DientesLimpios.Dominio.Entidades
                 throw new ExcepcionDeReglaDeNegocio($"El {nameof(nombre)} es obligatorio");
             }
 
+            if(email == null) 
+            {
+                throw new ExcepcionDeReglaDeNegocio($"El {nameof(email)} es obligatorio");
+            }
+
             Id = Guid.CreateVersion7();
             Nombre = nombre;
             Email = email;
