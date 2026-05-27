@@ -1,6 +1,7 @@
 ﻿using DientesLimpios.Aplicacion.Contratos.Persistencia;
 using DientesLimpios.Aplicacion.Contratos.Repositorios;
 using DientesLimpios.Dominio.Entidades;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +16,26 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Comandos.CrearConsul
 
         private readonly IRepositorioConsultorios repositorio;
         private readonly IUnidadDeTrabajo unidadDeTrabajo;
+        private readonly IValidator<ComandoCrearConsultorio> validador;
 
-        public CasoDeUsoCrearConsultorio(IRepositorioConsultorios repositorio, IUnidadDeTrabajo unidadDeTrabajo)
+        public CasoDeUsoCrearConsultorio(IRepositorioConsultorios repositorio, 
+            IUnidadDeTrabajo unidadDeTrabajo, IValidator<ComandoCrearConsultorio> validador)
         {
             this.repositorio = repositorio;
             this.unidadDeTrabajo = unidadDeTrabajo;
+            this.validador = validador;
         }
 
         public async Task<Guid> Handle(ComandoCrearConsultorio comando) 
         {
             // orquestamos las acciones a realizar
+            var resultadoValidacion = await this.validador.ValidateAsync(comando);
+
+            if (!resultadoValidacion.IsValid)
+            {
+
+            }
+
             var consultorio = new Consultorio(comando.Nombre);
 
             try
