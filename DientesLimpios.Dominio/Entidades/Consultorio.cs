@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DientesLimpios.Dominio.Excepciones;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,16 @@ namespace DientesLimpios.Dominio.Entidades
     {
         public Guid Id { get; private set; }
         public string Nombre { get; private set; } = null!;
+
+        public Consultorio(string nombre)
+        {
+            if (string.IsNullOrWhiteSpace(nombre))
+            {
+                throw new ExcepcionDeReglaDeNegocio($"El {nameof(nombre)} es obligatorio");
+            }
+
+            Nombre = nombre;
+            Id = Guid.CreateVersion7(); // Guid secuencial para mejorar el rendimiento en la base de datos
+        }
     }
 }

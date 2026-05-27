@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DientesLimpios.Dominio.Enums;
+using DientesLimpios.Dominio.Excepciones;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,5 +21,45 @@ namespace DientesLimpios.Dominio.Entidades
         public Dentista? Dentista { get; private set; }
         public Consultorio? Consultorio { get; private set; }
 
+        public Cita(Guid pacienteId, Guid dentistaId, Guid consultorioId, DateTime fechaInicio, DateTime fechaFin)
+        {
+            if (fechaInicio > fechaFin)
+            {
+                throw new ExcepcionDeReglaDeNegocio($"La fecha de inicio no puede ser mayor a la fecha fin");
+            }
+
+            if (fechaInicio < DateTime.UtcNow)
+            {
+                throw new ExcepcionDeReglaDeNegocio($"La fecha de inicio no puede ser anterior a la fecha actual");
+            }
+
+            PacienteId = pacienteId;
+            DentistaId = dentistaId;
+            ConsultorioId = consultorioId;
+            FechaInicio = fechaInicio;
+            FechaFin = fechaFin;
+            Estado = EstadoCita.Programada;
+            Id = Guid.CreateVersion7();
+        }
+
+        public void Cancelar()
+        {
+            if (Estado != EstadoCita.Programada)
+            {
+                throw new ExcepcionDeReglaDeNegocio($"Solo se pueden cancelar citas programadas");
+            }
+            
+            Estado = EstadoCita.Cancelada;
+        }
+
+        public void Completar()
+        {
+            if (Estado != EstadoCita.Programada)
+            {
+                throw new ExcepcionDeReglaDeNegocio($"Solo se pueden completar citas programadas");
+            }
+
+            Estado = EstadoCita.Completada;
+        }
     }
 }
