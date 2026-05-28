@@ -1,6 +1,7 @@
 ﻿using DientesLimpios.Aplicacion.Contratos.Persistencia;
 using DientesLimpios.Aplicacion.Contratos.Repositorios;
 using DientesLimpios.Aplicacion.Excepciones;
+using DientesLimpios.Aplicacion.Utilidades.Mediador;
 using DientesLimpios.Dominio.Entidades;
 using FluentValidation;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Comandos.CrearConsultorio
 {
-    public class CasoDeUsoCrearConsultorio
+    public class CasoDeUsoCrearConsultorio : IRequestHandler<ComandoCrearConsultorio, Guid>
     {
         // Convención, tendremos un método llamado "Ejecutar" que va a recibir un comando y va a devolver un resultado
 
