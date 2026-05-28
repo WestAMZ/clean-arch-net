@@ -1,5 +1,6 @@
 ﻿using DientesLimpios.Aplicacion.Contratos.Persistencia;
 using DientesLimpios.Aplicacion.Contratos.Repositorios;
+using DientesLimpios.Aplicacion.Excepciones;
 using DientesLimpios.Dominio.Entidades;
 using FluentValidation;
 using System;
@@ -33,7 +34,7 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Comandos.CrearConsul
 
             if (!resultadoValidacion.IsValid)
             {
-
+                throw new ExcepcionDeValidacion(resultadoValidacion);
             }
 
             var consultorio = new Consultorio(comando.Nombre);
