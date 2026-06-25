@@ -18,26 +18,17 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Comandos.CrearConsul
 
         private readonly IRepositorioConsultorios repositorio;
         private readonly IUnidadDeTrabajo unidadDeTrabajo;
-        private readonly IValidator<ComandoCrearConsultorio> validador;
 
         public CasoDeUsoCrearConsultorio(IRepositorioConsultorios repositorio, 
-            IUnidadDeTrabajo unidadDeTrabajo, IValidator<ComandoCrearConsultorio> validador)
+            IUnidadDeTrabajo unidadDeTrabajo)
         {
             this.repositorio = repositorio;
             this.unidadDeTrabajo = unidadDeTrabajo;
-            this.validador = validador;
         }
 
         public async Task<Guid> Handle(ComandoCrearConsultorio comando) 
         {
             // orquestamos las acciones a realizar
-            var resultadoValidacion = await this.validador.ValidateAsync(comando);
-
-            if (!resultadoValidacion.IsValid)
-            {
-                throw new ExcepcionDeValidacion(resultadoValidacion);
-            }
-
             var consultorio = new Consultorio(comando.Nombre);
 
             try

@@ -20,7 +20,6 @@ namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Consultorios
     {
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         private IRepositorioConsultorios repositorio;
-        private IValidator<ComandoCrearConsultorio> validator;
         private IUnidadDeTrabajo unidadDeTrabajo;
         private CasoDeUsoCrearConsultorio casoDeUso;
 #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
@@ -29,10 +28,9 @@ namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Consultorios
         public void Setup() 
         {
             repositorio = Substitute.For<IRepositorioConsultorios>();
-            validator = Substitute.For<IValidator<ComandoCrearConsultorio>>();
             unidadDeTrabajo = Substitute.For<IUnidadDeTrabajo>();
 
-            casoDeUso = new CasoDeUsoCrearConsultorio(repositorio, unidadDeTrabajo, validator);
+            casoDeUso = new CasoDeUsoCrearConsultorio(repositorio, unidadDeTrabajo);
         }
 
         [TestMethod]
@@ -40,7 +38,6 @@ namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Consultorios
         {
             var comando = new ComandoCrearConsultorio { Nombre = "Consultorio A" };
 
-            validator.ValidateAsync(comando).Returns(new ValidationResult());
 
             var consultorioCreado = new Consultorio("Consultorio A");
             repositorio.Agregar(Arg.Any<Consultorio>()).Returns(consultorioCreado);
@@ -50,31 +47,9 @@ namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Consultorios
             // Validamos que se llamó el método agregar con un Consultorio
             // Validamos que se llamó el método Persistir de la unidad de trabajo
             // Validamos que el resultado no sea un Guid vacío
-            await validator.Received(1).ValidateAsync(comando);
             await repositorio.Received(1).Agregar(Arg.Any<Consultorio>());
             await unidadDeTrabajo.Received(1).Persistir();
             Assert.AreNotEqual(Guid.Empty, resultado);
-        }
-
-        [TestMethod]
-        public async Task HandleComandoNoValido_LanzaExcepcion()
-        {
-            var comando = new ComandoCrearConsultorio { Nombre = "" };
-
-            var resultadoValidacion = new ValidationResult(new[]
-            {
-                new ValidationFailure("Nombre", "El nombre es obligatorio")
-            });
-
-            validator.ValidateAsync(comando).Returns(resultadoValidacion);
-
-            await Assert.ThrowsExceptionAsync<ExcepcionDeValidacion>(async () =>
-            {
-                await casoDeUso.Handle(comando);
-            });
-
-            // Validamos que no se llamó el método agregar del repositorio
-            await repositorio.DidNotReceive().Agregar(Arg.Any<Consultorio>());
         }
 
         [TestMethod]
@@ -82,7 +57,6 @@ namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Consultorios
         {
             var comando = new ComandoCrearConsultorio { Nombre = "Consultorio A" };
             repositorio.Agregar(Arg.Any<Consultorio>()).Throws<Exception>();
-            validator.ValidateAsync(comando).Returns(new ValidationResult());
 
             await Assert.ThrowsExceptionAsync<Exception>(async () =>
             {
