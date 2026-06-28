@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using DientesLimpios.Aplicacion.Contratos.Repositorios;
+using DientesLimpios.Persistencia.Repositorios;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,8 @@ namespace DientesLimpios.Persistencia
                 options.UseSqlServer("name=DientesLimpiosConnectionString")
             );
             
+            services.AddScoped<IRepositorioConsultorios, RepositorioConsultorios>();
+
             return services;
         }
     }
