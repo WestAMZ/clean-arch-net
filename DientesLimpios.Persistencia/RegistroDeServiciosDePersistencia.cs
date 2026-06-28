@@ -1,5 +1,7 @@
-﻿using DientesLimpios.Aplicacion.Contratos.Repositorios;
+﻿using DientesLimpios.Aplicacion.Contratos.Persistencia;
+using DientesLimpios.Aplicacion.Contratos.Repositorios;
 using DientesLimpios.Persistencia.Repositorios;
+using DientesLimpios.Persistencia.UnidadesDeTrabajo;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -19,6 +21,7 @@ namespace DientesLimpios.Persistencia
             );
             
             services.AddScoped<IRepositorioConsultorios, RepositorioConsultorios>();
+            services.AddScoped<IUnidadDeTrabajo, UnidadDeTrabajoEFCore>();
 
             return services;
         }
