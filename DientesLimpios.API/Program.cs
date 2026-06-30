@@ -1,3 +1,4 @@
+using DientesLimpios.API.Middlewares;
 using DientesLimpios.Aplicacion;
 using DientesLimpios.Persistencia;
 
@@ -15,6 +16,8 @@ builder.Services.AgregarServiciosDePersistencia();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+app.UseManejadorExcepcionesMiddleware();
 
 app.UseHttpsRedirection();
 
