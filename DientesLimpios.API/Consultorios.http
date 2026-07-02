@@ -10,6 +10,11 @@ Content-Type: application/json
 
 ###
 
+GET {{DientesLimpios.API_HostAddress}}/
+Content-Type: application/json
+
+###
+
 POST {{DientesLimpios.API_HostAddress}}
 Content-Type: application/json
 
