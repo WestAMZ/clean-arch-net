@@ -1,10 +1,12 @@
 ﻿using DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Consultas.ObtenerListadoConsultorios;
 using DientesLimpios.Aplicacion.Contratos.Repositorios;
 using DientesLimpios.Dominio.Entidades;
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.DataCollection;
 using NSubstitute;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -52,6 +54,17 @@ namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Consultorios
                 Assert.AreEqual(esperado[i].Nombre, resultado[i].Nombre);
             }
             
+        }
+
+        [TestMethod]
+        public async Task Handle_CuandoNoHayConsultorios_RetornListaVacia()
+        {
+            repositorio.ObtenerTodos().Returns(new List<Consultorio>());
+
+            var resultado = await casoDeUso.Handle(new ConsultaObtenerListadoConsultorios());
+            
+            Assert.IsNotNull(resultado);
+            Assert.AreEqual(0, resultado.Count);
         }
     }
 }
