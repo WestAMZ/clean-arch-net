@@ -24,3 +24,12 @@ Content-Type: application/json
 
 ###
 
+PUT {{DientesLimpios.API_HostAddress}}/019f21d5-1bc2-71ac-a4b0-1e67d23cb76b
+Content-Type: application/json
+
+{
+  "nombre": "Consultorio Z"
+}
+
+###
+
