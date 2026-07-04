@@ -28,8 +28,13 @@ PUT {{DientesLimpios.API_HostAddress}}/019f21d5-1bc2-71ac-a4b0-1e67d23cb76b
 Content-Type: application/json
 
 {
-  "nombre": "Consultorio Z"
+  "nombre": "Consultorio Y"
 }
+
+###
+
+DELETE {{DientesLimpios.API_HostAddress}}/019f2b0b-fb13-7666-81a1-4dd533a64462
+Content-Type: application/json
 
 ###
 
