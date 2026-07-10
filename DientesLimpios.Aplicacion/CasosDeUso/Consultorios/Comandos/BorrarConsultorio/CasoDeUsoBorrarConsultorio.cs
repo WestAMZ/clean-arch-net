@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DientesLimpios.Aplicacion.CasosDeUso.Consultorios.Comandos.BorrarConsultorio
 {
-    internal class CasoDeUsoBorrarConsultorio : IRequestHandler<ComandoBorrarConsultorio>
+    public class CasoDeUsoBorrarConsultorio : IRequestHandler<ComandoBorrarConsultorio>
     {
         private readonly IRepositorioConsultorios repositorio;
         private readonly IUnidadDeTrabajo unidadDeTrabajo;
