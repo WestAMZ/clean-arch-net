@@ -18,11 +18,23 @@ namespace DientesLimpios.Aplicacion
         public static IServiceCollection AgregarServiciosDeAplicacion( this IServiceCollection services) 
         {
             services.AddTransient<IMediator, MediadorSimple>();
-            services.AddScoped<IRequestHandler<ComandoCrearConsultorio,Guid>, CasoDeUsoCrearConsultorio>();
-            services.AddScoped<IRequestHandler<ConsultaObtenerDetalleConsultorio, ConsultorioDetalleDTO>, CasoDeUsoObtenerDetalleConsultorio>();
-            services.AddScoped<IRequestHandler<ConsultaObtenerListadoConsultorios, List<ConsultorioListadoDTO>>, CasoDeUsoObtenerListadoConsultorios>();
-            services.AddScoped<IRequestHandler<ComandoActualizarConsultorio>, CasoDeUsoActualizarConsultorio>();
-            services.AddScoped<IRequestHandler<ComandoBorrarConsultorio>, CasoDeUsoBorrarConsultorio>();
+
+            //Agregando servicios de casos de uso con Scrutor
+            services.Scan(scan => scan.FromAssembliesOf(typeof(IMediator))
+                .AddClasses(c => c.AssignableTo(typeof(IRequestHandler<>)))
+                .AsImplementedInterfaces()
+                .WithScopedLifetime()
+                // Para RequestHandlers que retornan valor
+                .AddClasses(c => c.AssignableTo(typeof(IRequestHandler<,>)))
+                .AsImplementedInterfaces()
+                .WithScopedLifetime()
+            );
+
+            //services.AddScoped<IRequestHandler<ComandoCrearConsultorio,Guid>, CasoDeUsoCrearConsultorio>();
+            //services.AddScoped<IRequestHandler<ConsultaObtenerDetalleConsultorio, ConsultorioDetalleDTO>, CasoDeUsoObtenerDetalleConsultorio>();
+            //services.AddScoped<IRequestHandler<ConsultaObtenerListadoConsultorios, List<ConsultorioListadoDTO>>, CasoDeUsoObtenerListadoConsultorios>();
+            //services.AddScoped<IRequestHandler<ComandoActualizarConsultorio>, CasoDeUsoActualizarConsultorio>();
+            //services.AddScoped<IRequestHandler<ComandoBorrarConsultorio>, CasoDeUsoBorrarConsultorio>();
 
             return services;
         }
