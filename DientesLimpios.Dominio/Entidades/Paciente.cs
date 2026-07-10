@@ -14,6 +14,12 @@ namespace DientesLimpios.Dominio.Entidades
         public string Nombre { get; private set; } = null!;
         public Email Email { get; private set; } = null!;
 
+        // Constructor vacio requerido por EF, lo dejamos privado para que no sea accesible para su uso
+        private Paciente()
+        {
+            
+        }
+
         public Paciente(string nombre, Email email)
         {
             if (string.IsNullOrWhiteSpace(nombre))

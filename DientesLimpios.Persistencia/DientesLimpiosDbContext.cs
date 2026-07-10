@@ -25,5 +25,6 @@ namespace DientesLimpios.Persistencia
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DientesLimpiosDbContext).Assembly);
         }
         public DbSet<Consultorio> Consultorios { get; set; }
+        public DbSet<Paciente> Pacientes { get; set; }
     }
 }

@@ -16,10 +16,15 @@ namespace DientesLimpios.Dominio.Entidades
         public Guid DentistaId { get; private set; }
         public Guid ConsultorioId { get; private set; }
         public Enums.EstadoCita Estado { get; private set; }
-        public IntervaloDeTiempo IntervaloDeTiempo { get;private set; }
+        public IntervaloDeTiempo IntervaloDeTiempo { get; private set; } = null!;
         public Paciente? Paciente { get; private set; }
         public Dentista? Dentista { get; private set; }
         public Consultorio? Consultorio { get; private set; }
+
+        private Cita()
+        {
+            
+        }
 
         public Cita(Guid pacienteId, Guid dentistaId, Guid consultorioId, IntervaloDeTiempo intervaloDeTiempo)
         {
