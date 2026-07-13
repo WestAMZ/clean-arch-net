@@ -1,5 +1,6 @@
 ﻿using DientesLimpios.API.DTOs.Pacientes;
 using DientesLimpios.Aplicacion.CasosDeUso.Pacientes.Comandos.CrearPaciente;
+using DientesLimpios.Aplicacion.CasosDeUso.Pacientes.Consultas.ObtenerListadoPacientes;
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
 using DientesLimpios.Dominio.ObjetosDeValor;
 using Microsoft.AspNetCore.Mvc;
@@ -15,6 +16,13 @@ namespace DientesLimpios.API.Controllers
         public PacienteController(IMediator mediator)
         {
             this.mediator = mediator;
+        }
+        [HttpGet]
+        public async Task<ActionResult<List<PacienteListadoDTO>>> Get() 
+        {
+            var consulta = new ConsultaObtenerListadoPacientes();
+            var resultado = await mediator.Send(consulta);
+            return resultado;
         }
 
         [HttpPost]
