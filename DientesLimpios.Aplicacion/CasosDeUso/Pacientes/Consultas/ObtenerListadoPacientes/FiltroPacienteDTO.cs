@@ -9,6 +9,6 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Pacientes.Consultas.ObtenerListad
     public class FiltroPacienteDTO
     {
         public int Pagina { get; set; } = 1;
-        public int RegistroPorPagina { get; set; } = 10;
+        public int RegistrosPorPagina { get; set; } = 10;
     }
 }

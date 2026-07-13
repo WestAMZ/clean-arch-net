@@ -14,5 +14,8 @@ Content-Type: application/json
 GET {{DientesLimpios.API_HostAddress}}
 Content-Type: application/json
 
+###
+GET {{DientesLimpios.API_HostAddress}}?pagina=2&registrosPorPagina=1
+Content-Type: application/json
 
 ###
