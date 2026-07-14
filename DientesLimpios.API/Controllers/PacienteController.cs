@@ -1,6 +1,7 @@
 ﻿using DientesLimpios.API.DTOs.Pacientes;
 using DientesLimpios.API.Utilidades;
 using DientesLimpios.Aplicacion.CasosDeUso.Pacientes.Comandos.CrearPaciente;
+using DientesLimpios.Aplicacion.CasosDeUso.Pacientes.Consultas.ObtenerDetallePaciente;
 using DientesLimpios.Aplicacion.CasosDeUso.Pacientes.Consultas.ObtenerListadoPacientes;
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
 using DientesLimpios.Dominio.ObjetosDeValor;
@@ -25,6 +26,15 @@ namespace DientesLimpios.API.Controllers
             var resultado = await mediator.Send(consulta);
             HttpContext.InsertarPaginacionEnCabecera(resultado.Total);
             return resultado.Elementos;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<PacienteDetalleDTO>> Get(Guid id) 
+        {
+            var consulta = new ConsultaObtenerDetallePaciente() { Id = id };
+            var resultado = await mediator.Send(consulta);
+            return resultado;
+
         }
 
         [HttpPost]

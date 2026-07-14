@@ -15,6 +15,10 @@ GET {{DientesLimpios.API_HostAddress}}
 Content-Type: application/json
 
 ###
+GET {{DientesLimpios.API_HostAddress}}/019f598b-b25e-79a4-b17a-9f6a69257fa7
+Content-Type: application/json
+
+###
 GET {{DientesLimpios.API_HostAddress}}?pagina=2&registrosPorPagina=1
 Content-Type: application/json
 
