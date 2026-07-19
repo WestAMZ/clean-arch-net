@@ -1,5 +1,4 @@
-﻿using DientesLimpios.Aplicacion.CasosDeUso.Pacientes.Comandos.ActualizarPaciente;
-using DientesLimpios.Aplicacion.Contratos.Persistencia;
+﻿using DientesLimpios.Aplicacion.Contratos.Persistencia;
 using DientesLimpios.Aplicacion.Contratos.Repositorios;
 using DientesLimpios.Aplicacion.Excepciones;
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
@@ -11,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DientesLimpios.Aplicacion.CasosDeUso.Pacientes.Comandos.CrearPaciente
+namespace DientesLimpios.Aplicacion.CasosDeUso.Pacientes.Comandos.ActualizarPaciente
 {
     public class CasoDeUsoActualizarPaciente : IRequestHandler<ComandoActualizarPaciente>
     {
