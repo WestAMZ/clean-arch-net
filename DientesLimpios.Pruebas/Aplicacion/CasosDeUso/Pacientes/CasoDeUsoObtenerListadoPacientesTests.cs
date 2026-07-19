@@ -27,7 +27,7 @@ namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Pacientes
         }
 
         [TestMethod]
-        public async Task HandleRetornaPacientesPaginadosCorrectamente()
+        public async Task Handle_RetornaPacientesPaginadosCorrectamente()
         {
             var pagina = 1;
             var registrosPorPagina = 2;
