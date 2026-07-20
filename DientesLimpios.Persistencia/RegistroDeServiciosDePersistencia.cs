@@ -23,6 +23,8 @@ namespace DientesLimpios.Persistencia
             services.AddScoped<IRepositorioConsultorios, RepositorioConsultorios>();
             services.AddScoped<IRepositorioPacientes, RepositorioPacientes>();
             services.AddScoped<IRepositorioDentistas, RepositorioDentistas>();
+            services.AddScoped<IRepositorioCitas, RepositorioCitas>();
+
             services.AddScoped<IUnidadDeTrabajo, UnidadDeTrabajoEFCore>();
 
             return services;

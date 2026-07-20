@@ -36,7 +36,7 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Dentistas.Comandos.ActualizarDent
 
             try
             {
-                await repositorio.Borrar(dentista);
+                await repositorio.Actualizar(dentista);
                 await unidadDeTrabajo.Persistir();
             }
             catch (Exception)
