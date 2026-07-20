@@ -28,9 +28,9 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Dentistas.Comandos.CrearDentista
 
             try
             {
-                await repositorio.Agregar(dentista);
+                var respuesta = await repositorio.Agregar(dentista);
                 await unidadDeTrabajo.Persistir();
-                return dentista.Id;
+                return respuesta.Id;
             }
             catch (Exception)
             {

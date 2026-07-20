@@ -49,7 +49,7 @@ namespace DientesLimpios.Pruebas.Aplicacion.CasosDeUso.Pacientes
         }
 
         [TestMethod]
-        public async Task Handle_CuandoOcurreExcpcion_ReversarYLanzaExcepcion() 
+        public async Task Handle_CuandoOcurreExcepcion_ReversarYLanzaExcepcion() 
         {
             var comando = new ComandoCrearPaciente
             { Nombre = "Paciente A", Email = "pacienteA@gmail.com" };
