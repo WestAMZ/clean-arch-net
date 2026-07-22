@@ -1,6 +1,7 @@
 ﻿using DientesLimpios.API.DTOs.Citas;
 using DientesLimpios.Aplicacion.CasosDeUso.Citas.Comandos.CrearCita;
 using DientesLimpios.Aplicacion.CasosDeUso.Citas.Consultas.ObtenerDetalleCita;
+using DientesLimpios.Aplicacion.CasosDeUso.Citas.Consultas.ObtenerListadoCitas;
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,6 +16,13 @@ namespace DientesLimpios.API.Controllers
         public CitasController(IMediator mediator)
         {
             this.mediator = mediator;
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<CitaListadoDTO>>> Get([FromQuery] ConsultaObtenerListadoCitas consulta) 
+        {
+            var resultado = await mediator.Send(consulta);
+            return resultado;
         }
 
         [HttpGet("{id}")]

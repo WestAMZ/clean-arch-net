@@ -1,4 +1,5 @@
-﻿using DientesLimpios.Dominio.Entidades;
+﻿using DientesLimpios.Aplicacion.CasosDeUso.Citas.Consultas.ObtenerListadoCitas;
+using DientesLimpios.Dominio.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace DientesLimpios.Aplicacion.Contratos.Repositorios
 
         // palabra reservada new, Oculta contrato proveniente de IRepositorio para requerir implementar uno nuevo
         new Task<Cita?> ObtenerPorId(Guid id);
+        Task<IEnumerable<Cita>> ObtenerFiltrado(FiltroCitasDTO filtroCitasDTO);
     }
 }
