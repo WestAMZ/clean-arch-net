@@ -29,5 +29,15 @@ namespace DientesLimpios.Persistencia.Repositorios
                 )
                 .AnyAsync();
         }
+
+        // con new implementamos el new invocado en IRepositorioCitas
+        new public async Task<Cita?> ObtenerPorId(Guid id) 
+        {
+            return await context.Citas
+                .Include(x => x.Paciente)
+                .Include(x => x.Dentista)
+                .Include(x => x.Consultorio)
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
     }
 }
