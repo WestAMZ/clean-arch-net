@@ -1,4 +1,5 @@
 ﻿using DientesLimpios.Aplicacion.Excepciones;
+using DientesLimpios.Dominio.Excepciones;
 using System.Net;
 using System.Net.Mime;
 using System.Text.Json;
@@ -42,6 +43,10 @@ namespace DientesLimpios.API.Middlewares
                     httpStatusCode = HttpStatusCode.BadRequest;
                     var excepcionDeValidacion = exception as ExcepcionDeValidacion;
                     resultado = JsonSerializer.Serialize(excepcionDeValidacion?.ErroresDeValidacion);
+                    break;
+                case ExcepcionDeReglaDeNegocio excepcionDeReglaDeNegocio:
+                    httpStatusCode = HttpStatusCode.BadRequest;
+                    resultado = JsonSerializer.Serialize(excepcionDeReglaDeNegocio.Message);
                     break;
             }
 

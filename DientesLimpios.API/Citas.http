@@ -34,3 +34,12 @@ Content-Type: application/json
   "email": "alejandro@ejemplo.com"
 }
 
+###
+
+POST {{DientesLimpios.API_HostAddress}}/019F816D-9998-7728-9EDE-50E1AE7385BC/completar
+Content-Type: application/json
+
+####
+
+POST {{DientesLimpios.API_HostAddress}}/019F816C-4C10-7E57-9132-8B466BE155EA/cancelar
+Content-Type: application/json
