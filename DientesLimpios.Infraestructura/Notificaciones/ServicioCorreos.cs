@@ -45,7 +45,7 @@ namespace DientesLimpios.Infraestructura.Notificaciones
 
             Console.WriteLine($"Correo para: {emailDestinatario}, asunto: {asunto}.");
             var mensaje = new MailMessage(nuestroEmail, emailDestinatario, asunto, cuerpo);
-            smtpCliente.SendAsync(mensaje, null);
+            await smtpCliente.SendMailAsync(mensaje);
         }
     }
 }
