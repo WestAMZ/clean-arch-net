@@ -1,4 +1,5 @@
-﻿using DientesLimpios.Aplicacion.Contratos.Persistencia;
+﻿using DientesLimpios.Aplicacion.Contratos.Notificaciones;
+using DientesLimpios.Aplicacion.Contratos.Persistencia;
 using DientesLimpios.Aplicacion.Contratos.Repositorios;
 using DientesLimpios.Aplicacion.Excepciones;
 using DientesLimpios.Aplicacion.Utilidades.Mediador;
@@ -7,6 +8,7 @@ using DientesLimpios.Dominio.ObjetosDeValor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,11 +18,14 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Citas.Comandos.CrearCita
     {
         private readonly IRepositorioCitas repositorio;
         private readonly IUnidadDeTrabajo unidadDeTrabajo;
+        private readonly IServicioNotificaciones servicioNotificaciones;
 
-        public CasoDeUsoCrearCita(IRepositorioCitas repositorio, IUnidadDeTrabajo unidadDeTrabajo)
+        public CasoDeUsoCrearCita(IRepositorioCitas repositorio, IUnidadDeTrabajo unidadDeTrabajo, 
+            IServicioNotificaciones servicioNotificaciones)
         {
             this.repositorio = repositorio;
             this.unidadDeTrabajo = unidadDeTrabajo;
+            this.servicioNotificaciones = servicioNotificaciones;
         }
         public async Task<Guid> Handle(ComandoCrearCita request)
         {
@@ -35,17 +40,25 @@ namespace DientesLimpios.Aplicacion.CasosDeUso.Citas.Comandos.CrearCita
             var intervaloDeTiempo = new IntervaloDeTiempo(request.FechaInicio, request.FechaFin);
             var cita = new Cita(request.PacienteId, request.DentistaId, request.ConsultorioId, intervaloDeTiempo);
 
+            Guid? id = null;
+
             try
             {
                 var respuesta = await repositorio.Agregar(cita);
                 await unidadDeTrabajo.Persistir();
-                return respuesta.Id;
+                id = respuesta.Id;
             }
             catch (Exception) 
             {
                 await unidadDeTrabajo.Reversar();
                 throw;
             }
+
+            var citaDB = await repositorio.ObtenerPorId(id.Value);
+            var notificacionDTO = citaDB!.ADto();
+            await servicioNotificaciones.EnviarConfirmacionCita(notificacionDTO);
+
+            return id.Value;
         }
     }
 }
