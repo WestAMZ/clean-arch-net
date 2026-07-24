@@ -3,6 +3,8 @@ using DientesLimpios.Aplicacion;
 using DientesLimpios.Persistencia;
 using DientesLimpios.Infraestructura;
 using DientesLimpios.API.Jobs;
+using DientesLimpios.Identidad;
+using DientesLimpios.Identidad.Modelos;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,12 +17,15 @@ builder.Services.AddControllers();
 builder.Services.AgregarServiciosDeAplicacion();
 builder.Services.AgregarServiciosDePersistencia();
 builder.Services.AgregarServiciosDeInfraestructura();
+builder.Services.AgregarServiciosDeIdentidad();
 
 builder.Services.AddHostedService<RecordatorioCitasJob>();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+
+app.MapIdentityApi<Usuario>();
 
 app.UseManejadorExcepcionesMiddleware();
 
