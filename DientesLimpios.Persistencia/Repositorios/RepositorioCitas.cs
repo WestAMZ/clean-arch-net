@@ -1,5 +1,5 @@
-﻿using DientesLimpios.Aplicacion.CasosDeUso.Citas.Consultas.ObtenerListadoCitas;
-using DientesLimpios.Aplicacion.Contratos.Repositorios;
+﻿using DientesLimpios.Aplicacion.Contratos.Repositorios;
+using DientesLimpios.Aplicacion.Contratos.Repositorios.Modelos;
 using DientesLimpios.Dominio.Entidades;
 using DientesLimpios.Dominio.Enums;
 using Microsoft.EntityFrameworkCore;

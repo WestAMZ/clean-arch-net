@@ -1,4 +1,5 @@
-﻿using DientesLimpios.Aplicacion.Utilidades.Mediador;
+﻿using DientesLimpios.Aplicacion.Contratos.Repositorios.Modelos;
+using DientesLimpios.Aplicacion.Utilidades.Mediador;
 using System;
 using System.Collections.Generic;
 using System.Linq;

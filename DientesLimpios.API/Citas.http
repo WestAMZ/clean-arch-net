@@ -9,8 +9,8 @@ Content-Type: application/json
   "pacienteId": "019F630D-4566-7C9C-BD6D-DBF891440C42",
   "dentistaId": "019F810E-3CB7-744F-B0AE-43558414CE83",
   "consultorioId": "019F8166-EA59-7EBA-ACEC-2A0CB9BA95AF",
-  "fechaInicio": "2026-09-01T13:00:00",
-  "fechaFin": "2026-09-01T13:30:00"
+  "fechaInicio": "2026-07-25T13:00:00",
+  "fechaFin": "2026-07-25T13:30:00"
 }
 
 ###

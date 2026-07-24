@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DientesLimpios.Aplicacion.Contratos.Notificaciones
 {
-    public class ConfirmacionCitaDTO: DatosCorreoCita
+    public class RecordatorioCitaDTO: DatosCorreoCita
     {
-        
+
     }
 }

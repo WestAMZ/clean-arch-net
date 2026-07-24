@@ -1,4 +1,4 @@
-﻿using DientesLimpios.Aplicacion.CasosDeUso.Citas.Consultas.ObtenerListadoCitas;
+﻿using DientesLimpios.Aplicacion.Contratos.Repositorios.Modelos;
 using DientesLimpios.Dominio.Entidades;
 using System;
 using System.Collections.Generic;

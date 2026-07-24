@@ -6,6 +6,7 @@ using System.ComponentModel.Design;
 using System.Globalization;
 using System.Net;
 using System.Net.Mail;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 
@@ -29,6 +30,21 @@ namespace DientesLimpios.Infraestructura.Notificaciones
                 Equipo de Dientes Limpios
                 """;
             await EnviarMensaje(cita.Paciente_Email, asunto, cuerpo);
+        }
+
+        public async Task EnviarRecordatorioCita(RecordatorioCitaDTO cita)
+        {
+            var asunto = "RECORDATORIO: Confirmación de cita - Dientes Limpios";
+            var cuerpo = $"""
+                Estimado (a) {cita.Paciente},
+                Le recoerdamos que tiene una cita con el Dr (Dra.) {cita.Dentista} para el {cita.Fecha.ToString("f", new CultureInfo("es-NI"))} en el consultorio {cita.Consultorio}.
+
+                ¡Le esperamos!
+                Equipo de Deintes Limpios
+                """;
+
+            await EnviarMensaje(cita.Paciente_Email, asunto, cuerpo);
+
         }
 
         private async Task EnviarMensaje(string emailDestinatario, string asunto, string cuerpo) 

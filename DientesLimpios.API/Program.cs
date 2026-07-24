@@ -2,6 +2,7 @@ using DientesLimpios.API.Middlewares;
 using DientesLimpios.Aplicacion;
 using DientesLimpios.Persistencia;
 using DientesLimpios.Infraestructura;
+using DientesLimpios.API.Jobs;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +15,8 @@ builder.Services.AddControllers();
 builder.Services.AgregarServiciosDeAplicacion();
 builder.Services.AgregarServiciosDePersistencia();
 builder.Services.AgregarServiciosDeInfraestructura();
+
+builder.Services.AddHostedService<RecordatorioCitasJob>();
 
 var app = builder.Build();
 
